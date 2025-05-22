@@ -89,7 +89,7 @@ public class Others extends Feature {
         propsBoolean.put(7769, false);
 
         // disable new Media Picker
-        propsBoolean.put(9286, false);
+        propsBoolean.put(9286, true);
 
         // Instant Video
         propsBoolean.put(3354, true);
@@ -152,9 +152,8 @@ public class Others extends Feature {
         if (metaai) {
             propsBoolean.put(8025, false);
             propsBoolean.put(6251, false);
-            propsBoolean.put(7639, false);
-            propsBoolean.put(10379, false);
-            propsBoolean.put(10388, false);
+            propsBoolean.put(8026, false);
+            propsBoolean.put(14886, false);
         }
 
         if (audio_transcription) {
@@ -558,7 +557,7 @@ public class Others extends Feature {
     private void hookProps() throws Exception {
         var methodPropsBoolean = Unobfuscator.loadPropsBooleanMethod(classLoader);
         logDebug(Unobfuscator.getMethodDescriptor(methodPropsBoolean));
-        var dataUsageActivityClass = XposedHelpers.findClass("com.whatsapp.settings.SettingsDataUsageActivity", classLoader);
+        var dataUsageActivityClass = WppCore.getDataUsageActivityClass(classLoader);
         XposedBridge.hookMethod(methodPropsBoolean, new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
